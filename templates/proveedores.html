@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Proveedores | MV Artículos Florales{% endblock %}
+{% block content %}
+<section class="module-header"><div class="container"><span class="section-label text-warning">Abastecimiento</span><h1>{{ titulo_modulo }}</h1><p>Empresas que apoyan el abastecimiento de nuestro catálogo.</p></div></section>
+<section class="section-padding bg-light"><div class="container"><div class="row g-4">
+{% for proveedor in proveedores %}<article class="col-12 col-md-6 col-lg-4"><div class="card h-100 border-0 shadow-sm info-card"><div class="card-body p-4"><div class="icon-circle mb-3">{{ loop.index }}</div><h2 class="h4 text-success">{{ proveedor.empresa|upper }}</h2><p><strong>Suministro:</strong> {{ proveedor.producto }}</p><p><strong>Ciudad:</strong> {{ proveedor.ciudad }}</p><span class="badge text-bg-warning">Entrega: {{ proveedor.entrega }} días</span></div></div></article>{% endfor %}
+</div></div></section>
+{% endblock %}

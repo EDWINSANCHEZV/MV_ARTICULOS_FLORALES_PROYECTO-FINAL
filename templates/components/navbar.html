@@ -1,0 +1,22 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" aria-label="Navegación principal">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="{{ url_for('inicio') }}">
+        <img src="{{ url_for('static', filename='img/mv_articulos_florales.png') }}" alt="Logo de MV Artículos Florales" class="logo-navbar">
+        <span>MV Artículos Florales</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuFlask" aria-controls="menuFlask" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuFlask">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link {% if request.endpoint == 'inicio' %}active{% endif %}" href="{{ url_for('inicio') }}">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link {% if request.endpoint == 'productos' %}active{% endif %}" href="{{ url_for('productos') }}">Productos</a></li>
+          <li class="nav-item"><a class="nav-link {% if request.endpoint == 'clientes' %}active{% endif %}" href="{{ url_for('clientes') }}">Clientes</a></li>
+          <li class="nav-item"><a class="nav-link {% if request.endpoint == 'proveedores' %}active{% endif %}" href="{{ url_for('proveedores') }}">Proveedores</a></li>
+          <li class="nav-item"><a class="nav-link {% if request.endpoint == 'facturacion' %}active{% endif %}" href="{{ url_for('facturacion') }}">Facturación</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

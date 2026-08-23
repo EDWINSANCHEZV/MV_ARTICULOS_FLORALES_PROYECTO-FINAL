@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Productos | MV Artículos Florales{% endblock %}
+{% block content %}
+<section class="module-header"><div class="container"><span class="section-label text-warning">Módulo comercial</span><h1>{{ titulo_modulo|upper }}</h1><p>Conozca nuestros insumos para el sector florícola.</p></div></section>
+<section class="section-padding"><div class="container"><div class="row g-4">
+  {% for producto in productos %}
+  <article class="col-12 col-md-6 col-lg-4"><div class="card product-card h-100 border-0 shadow-sm">
+    <img src="{{ url_for('static', filename='img/' + producto.imagen) }}" class="card-img-top" alt="{{ producto.nombre }}">
+    <div class="card-body p-4"><h2 class="h4 text-success">{{ producto.nombre|title }}</h2><p>{{ producto.descripcion }}</p><p><strong>Categoría:</strong> {{ producto.categoria }}</p><p><strong>Precio:</strong> ${{ "%.2f"|format(producto.precio) }}</p>
+    {% if producto.stock > 0 %}<span class="badge text-bg-success">Disponible: {{ producto.stock }} unidades</span>{% else %}<span class="badge text-bg-danger">Agotado</span>{% endif %}</div>
+  </div></article>
+  {% endfor %}
+</div></div></section>
+{% endblock %}
