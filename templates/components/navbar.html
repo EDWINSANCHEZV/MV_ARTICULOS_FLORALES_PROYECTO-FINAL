@@ -5,16 +5,21 @@
         <img src="{{ url_for('static', filename='img/mv_articulos_florales.png') }}" alt="Logo de MV Artículos Florales" class="logo-navbar">
         <span>MV Artículos Florales</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuFlask" aria-controls="menuFlask" aria-expanded="false" aria-label="Abrir menú">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuFlask" aria-controls="menuFlask" aria-expanded="false" aria-label="Abrir menú"><span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="menuFlask">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
           <li class="nav-item"><a class="nav-link {% if request.endpoint == 'inicio' %}active{% endif %}" href="{{ url_for('inicio') }}">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link {% if request.endpoint == 'productos' %}active{% endif %}" href="{{ url_for('productos') }}">Productos</a></li>
-          <li class="nav-item"><a class="nav-link {% if request.endpoint == 'clientes' %}active{% endif %}" href="{{ url_for('clientes') }}">Clientes</a></li>
-          <li class="nav-item"><a class="nav-link {% if request.endpoint == 'proveedores' %}active{% endif %}" href="{{ url_for('proveedores') }}">Proveedores</a></li>
-          <li class="nav-item"><a class="nav-link {% if request.endpoint == 'facturacion' %}active{% endif %}" href="{{ url_for('facturacion') }}">Facturación</a></li>
+          {% if current_user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link {% if request.endpoint == 'panel' %}active{% endif %}" href="{{ url_for('panel') }}">Panel</a></li>
+            <li class="nav-item"><a class="nav-link {% if request.endpoint and request.endpoint.startswith('producto') %}active{% endif %}" href="{{ url_for('productos') }}">Productos</a></li>
+            <li class="nav-item"><a class="nav-link {% if request.endpoint and request.endpoint.startswith('cliente') %}active{% endif %}" href="{{ url_for('clientes') }}">Clientes</a></li>
+            <li class="nav-item"><a class="nav-link {% if request.endpoint and request.endpoint.startswith('proveedor') %}active{% endif %}" href="{{ url_for('proveedores') }}">Proveedores</a></li>
+            <li class="nav-item"><a class="nav-link {% if request.endpoint and request.endpoint.startswith('factura') %}active{% endif %}" href="{{ url_for('facturacion') }}">Facturación</a></li>
+            <li class="nav-item ms-lg-2"><form action="{{ url_for('logout') }}" method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-outline-light btn-sm" type="submit">Cerrar sesión</button></form></li>
+          {% else %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Iniciar sesión</a></li>
+            <li class="nav-item ms-lg-2"><a class="btn btn-warning btn-sm" href="{{ url_for('registro') }}">Crear cuenta</a></li>
+          {% endif %}
         </ul>
       </div>
     </div>

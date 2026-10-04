@@ -1,5 +1,5 @@
 // =============================================================
-// SEMANA 10 - CONTINUIDAD DEL FRONTEND PARA GITHUB PAGES
+// SEMANA 16 - VISTA ESTÁTICA COMPLEMENTARIA PARA GITHUB PAGES
 // Proyecto: MV Artículos Florales
 // Se conserva el contenido dinámico y las validaciones anteriores.
 // =============================================================
@@ -37,23 +37,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const bloquesPlantilla = [
     {
-      titulo: "Encabezado y navegación",
-      descripcion: "Contiene la identidad de la empresa y una navbar Bootstrap adaptable a computadora, tablet y celular.",
+      titulo: "Autenticación segura",
+      descripcion: "Registro, inicio y cierre de sesión con contraseñas protegidas mediante hash y rutas privadas.",
       icono: "1"
     },
     {
-      titulo: "Contenido principal",
-      descripcion: "Organiza la información en contenedores, filas, columnas, tarjetas y secciones reutilizables.",
+      titulo: "CRUD completo",
+      descripcion: "Permite crear, consultar, actualizar y eliminar productos, clientes, proveedores y facturas.",
       icono: "2"
     },
     {
-      titulo: "Contenido dinámico",
-      descripcion: "Renderiza productos y solicitudes desde arreglos de objetos mediante JavaScript y manipulación del DOM.",
+      titulo: "Datos relacionados",
+      descripcion: "Relaciona proveedores con productos y clientes con facturas y detalles de venta.",
       icono: "3"
     },
     {
-      titulo: "Pie de página",
-      descripcion: "Presenta los datos del proyecto, el autor y el año de elaboración de manera uniforme.",
+      titulo: "Validación y seguridad",
+      descripcion: "Utiliza Flask-WTF, validadores del servidor, protección CSRF y consultas parametrizadas.",
       icono: "4"
     }
   ];

@@ -6,4 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (instancia) instancia.hide();
     });
   });
+
+  document.querySelectorAll(".form-eliminar").forEach((formulario) => {
+    formulario.addEventListener("submit", (evento) => {
+      if (!window.confirm("¿Está seguro de eliminar este registro?")) evento.preventDefault();
+    });
+  });
 });

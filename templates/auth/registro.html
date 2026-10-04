@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% from "components/form_fields.html" import campo %}
+{% block title %}Registro | MV Artículos Florales{% endblock %}
+{% block content %}
+<section class="auth-section"><div class="container"><div class="row justify-content-center"><div class="col-md-8 col-lg-6"><div class="card border-0 shadow-lg"><div class="card-body p-4 p-lg-5"><div class="text-center mb-4"><span class="auth-icon">👤</span><h1 class="h3 mt-3">Crear cuenta</h1><p class="text-muted">Las contraseñas se almacenan protegidas mediante hash</p></div><form method="post" novalidate>{{ form.hidden_tag() }}{{ campo(form.nombre) }}<div class="row"><div class="col-md-6">{{ campo(form.usuario) }}</div><div class="col-md-6">{{ campo(form.correo) }}</div></div><div class="row"><div class="col-md-6">{{ campo(form.password) }}</div><div class="col-md-6">{{ campo(form.confirmar) }}</div></div>{{ form.submit(class='btn btn-success btn-lg w-100') }}</form><p class="text-center mt-4 mb-0">¿Ya tiene cuenta? <a href="{{ url_for('login') }}">Inicie sesión</a></p></div></div></div></div></div></section>
+{% endblock %}

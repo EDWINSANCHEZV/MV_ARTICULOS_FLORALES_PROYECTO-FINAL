@@ -3,18 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sistema web de MV Artículos Florales">
+  <meta name="description" content="Sistema de gestión de MV Artículos Florales">
   <title>{% block title %}MV Artículos Florales{% endblock %}</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
   {% include "components/navbar.html" %}
-
-  <main>
-    {% block content %}{% endblock %}
-  </main>
-
+  <div class="flash-container container" aria-live="polite">
+    {% with mensajes = get_flashed_messages(with_categories=true) %}
+      {% for categoria, mensaje in mensajes %}
+        <div class="alert alert-{{ categoria }} alert-dismissible fade show shadow-sm" role="alert">
+          {{ mensaje }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+      {% endfor %}
+    {% endwith %}
+  </div>
+  <main class="flex-grow-1">{% block content %}{% endblock %}</main>
   {% include "components/footer.html" %}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>

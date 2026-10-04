@@ -1,14 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Productos | MV Artículos Florales{% endblock %}
 {% block content %}
-<section class="module-header"><div class="container"><span class="section-label text-warning">Módulo comercial</span><h1>{{ titulo_modulo|upper }}</h1><p>Conozca nuestros insumos para el sector florícola.</p></div></section>
-<section class="section-padding"><div class="container"><div class="row g-4">
-  {% for producto in productos %}
-  <article class="col-12 col-md-6 col-lg-4"><div class="card product-card h-100 border-0 shadow-sm">
-    <img src="{{ url_for('static', filename='img/' + producto.imagen) }}" class="card-img-top" alt="{{ producto.nombre }}">
-    <div class="card-body p-4"><h2 class="h4 text-success">{{ producto.nombre|title }}</h2><p>{{ producto.descripcion }}</p><p><strong>Categoría:</strong> {{ producto.categoria }}</p><p><strong>Precio:</strong> ${{ "%.2f"|format(producto.precio) }}</p>
-    {% if producto.stock > 0 %}<span class="badge text-bg-success">Disponible: {{ producto.stock }} unidades</span>{% else %}<span class="badge text-bg-danger">Agotado</span>{% endif %}</div>
-  </div></article>
-  {% endfor %}
-</div></div></section>
+<section class="module-header"><div class="container d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3"><div><span class="section-label text-warning">CRUD completo</span><h1>Productos</h1><p class="mb-0">Inventario relacionado con proveedores.</p></div><a class="btn btn-warning" href="{{ url_for('producto_nuevo') }}">+ Nuevo producto</a></div></section>
+<section class="section-padding"><div class="container"><div class="card border-0 shadow-sm"><div class="card-body p-4"><div class="table-responsive"><table class="table table-hover align-middle"><thead class="table-success"><tr><th>Producto</th><th>Categoría</th><th>Proveedor</th><th>Precio</th><th>Stock</th><th>Acciones</th></tr></thead><tbody>{% for p in productos %}<tr><td class="fw-bold">{{ p.nombre }}</td><td>{{ p.categoria }}</td><td>{{ p.proveedor or 'Sin asignar' }}</td><td>${{ '%.2f'|format(p.precio|float) }}</td><td><span class="badge {% if p.stock > 0 %}text-bg-success{% else %}text-bg-danger{% endif %}">{{ p.stock }}</span></td><td class="text-nowrap"><a class="btn btn-sm btn-outline-success" href="{{ url_for('producto_editar', producto_id=p.id) }}">Editar</a> <form class="d-inline form-eliminar" method="post" action="{{ url_for('producto_eliminar', producto_id=p.id) }}">{{ eliminar_form.hidden_tag() }}<button class="btn btn-sm btn-outline-danger" type="submit">Eliminar</button></form></td></tr>{% else %}<tr><td colspan="6" class="text-center py-4">No hay productos.</td></tr>{% endfor %}</tbody></table></div></div></div></div></section>
 {% endblock %}

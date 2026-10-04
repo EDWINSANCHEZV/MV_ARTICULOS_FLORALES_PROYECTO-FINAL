@@ -1,0 +1,1 @@
+"""Módulo de conexión a la base de datos."""
